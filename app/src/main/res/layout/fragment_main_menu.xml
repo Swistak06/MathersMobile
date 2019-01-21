@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:orientation="horizontal"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent"
+                                             tools:context=".MainMenuFragment" android:baselineAligned="false"
+                                             android:background="#50636363">
+
+    <Button
+            android:text="START"
+            android:layout_width="147dp"
+            android:layout_height="61dp" android:id="@+id/startButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintHorizontal_bias="0.932"
+            app:layout_constraintVertical_bias="0.94"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1" android:textColor="#FF231C1E"
+            android:background="#e9721d"/>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="100dp" android:baselineAligned="false">
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/buttonsWithSizes" android:layout_weight="1">
+            <Button
+                    android:text="4 x 4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/size4Button"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1" android:textColor="#FF231C1E"
+                    android:background="#e9721d" android:layout_marginTop="5dp" android:layout_marginRight="3dp"/>
+            <Button
+                    android:text="5 x 5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/size5Button"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1" android:textColor="#FF231C1E"
+                    android:background="#FF6C6C6C" android:layout_marginTop="5dp" android:layout_marginRight="3dp"/>
+            <Button
+                    android:text="6 x 6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/size6Button"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1" android:textColor="#FF231C1E"
+                    android:background="#FF6C6C6C" android:layout_marginTop="5dp" android:layout_marginRight="3dp"/>
+            <Button
+                    android:text="7 x 7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/size7Button"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1" android:textColor="#FF231C1E"
+                    android:background="#FF6C6C6C" android:layout_marginTop="5dp" android:layout_marginRight="3dp"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/buttonsWithRanges" android:layout_weight="1">
+            <Button
+                    android:text="2 - 4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/firstRange"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1" android:textColor="#FF231C1E"
+                    android:background="#e9721d" android:layout_marginLeft="3dp" android:layout_marginTop="5dp"/>
+            <Button
+                    android:text="2 - 9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/secondRange"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1" android:textColor="#FF231C1E"
+                    android:background="#FF6C6C6C" android:layout_marginLeft="3dp" android:layout_marginTop="5dp"/>
+            <Button
+                    android:text="5 - 14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/thirdRange"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1" android:textColor="#FF231C1E"
+                    android:background="#FF6C6C6C" android:layout_marginLeft="3dp" android:layout_marginTop="5dp"/>
+            <Button
+                    android:text="9 - 22"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/fourthRange"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1" android:textColor="#FF231C1E"
+                    android:background="#FF6C6C6C" android:layout_marginLeft="3dp" android:layout_marginTop="5dp"/>
+        </LinearLayout>
+    </LinearLayout>
+    <ImageView
+            android:src="@drawable/mathers_mobile"
+            android:layout_width="352dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView" app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp" app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.0"/>
+</android.support.constraint.ConstraintLayout>
