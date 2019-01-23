@@ -8,16 +8,16 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 
-class GameSum(ctx: Context?, goal: Int, val index: Int) : RelativeLayout(ctx) {
+class GameSum(var game: GameFragment?, goal: Int, val index: Int) : RelativeLayout(game?.context) {
     private var textView: TextView? = null
     private var imageView: ImageView? = null
     var currentSum = 0
     private var goalSum = goal
-    private var completed = false
+    var completed = false
 
     init {
-        textView = TextView(ctx)
-        imageView = ImageView(ctx)
+        textView = TextView(game?.context)
+        imageView = ImageView(game?.context)
 
         val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 1.0f)
         layoutParams = params
@@ -40,6 +40,7 @@ class GameSum(ctx: Context?, goal: Int, val index: Int) : RelativeLayout(ctx) {
             if(!completed) {
                 completed = true
                 imageView?.setImageResource(R.drawable.completed)
+                game?.checkWinCondition()
             }
         }
         else{
