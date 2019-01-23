@@ -21,6 +21,7 @@ class GameFragment : Fragment() {
     private var min = 2
     private var max = 4
     private var size = 4
+    private var isTimerRunning = false
     val handler = Handler()
     var stopwatch = StopWatch(0,0,0,0)
     var numberGenerator = NumberGenerator()
@@ -42,12 +43,11 @@ class GameFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_game, container, false)
         generateButtons(view)
+        numberGenerator.createBoard(size,min,max)
         view.backBtn.setOnClickListener {
             //resetGameArea()
-            numberGenerator.createBoard(5,2,4)
             listener?.backToMenuListener()
             resetTimer()
-
         }
         return view
     }
@@ -124,22 +124,26 @@ class GameFragment : Fragment() {
         leftSum?.changeValue(value)
         topSum?.changeValue(value)
     }
+
+
+    /********************Timer methods********************/
     val runningStopWatch = object: Runnable {
         override fun run() {
             addOneSecond()
             handler.postDelayed(this, 1000)
         }
     }
-
     fun startTimer(){
         handler.removeCallbacks(runningStopWatch)
         handler.post(runningStopWatch)
+        isTimerRunning = true
     }
     fun stopTimer(){
         handler.removeCallbacks(runningStopWatch)
+        isTimerRunning = false
     }
     fun resetTimer(){
-        handler.removeCallbacks(runningStopWatch)
+        stopTimer()
         stopwatch = StopWatch(0,0,0,0)
         secondsView.text = "0"
         tenSecondsView.text = "0"
@@ -181,6 +185,8 @@ class GameFragment : Fragment() {
             tenMinutesView.text = stopwatch.tenMinutes.toString()
         }
     }
+
+
     private fun findLeftSum(row:Int) : GameSum?{
         leftGameSums.forEach {
             if(it.index == row)

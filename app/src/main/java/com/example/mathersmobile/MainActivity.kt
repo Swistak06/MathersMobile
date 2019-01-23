@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity(), MainMenuFragment.MainMenuListener, Gam
     override fun backToMenuListener() {
         val transaction = manager.beginTransaction()
         transaction.replace(R.id.main_frame, mainMenuFragment)
-        transaction.addToBackStack(null)
         transaction.commit()
     }
 
