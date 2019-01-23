@@ -117,10 +117,12 @@ class GameFragment : Fragment() {
         topGameSums.clear()
         gameButtons.clear()
     }
-    fun changeGameSum(column:Int, row:Int, value:Int){
+    fun changeGameSum(column:Int, row:Int, value:Int) {
         val leftSum = findLeftSum(row)
         val topSum = findTopSum(column)
-
+        leftSum?.changeValue(value)
+        topSum?.changeValue(value)
+    }
     val runningStopWatch = object: Runnable {
         override fun run() {
             addOneSecond()
@@ -177,9 +179,6 @@ class GameFragment : Fragment() {
             stopwatch.tenMinutes++
             tenMinutesView.text = stopwatch.tenMinutes.toString()
         }
-        leftSum?.changeValue(value)
-        topSum?.changeValue(value)
-
     }
     private fun findLeftSum(row:Int) : GameSum?{
         leftGameSums.forEach {
