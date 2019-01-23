@@ -90,24 +90,25 @@ class GameFragment : Fragment() {
     }
     fun generateButtons(view: View){
         clearLayouts()
+        numberGenerator.createBoard(size,min,max)
         val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 1.0f)
         for(i in 1..size){
             val horizLay = LinearLayout(context)
             horizLay.orientation = LinearLayout.HORIZONTAL
             horizLay.layoutParams = params
             for(j in 1..size){
-                val gameButton = GameButton(this, 10, j-1, i-1)
+                val gameButton = GameButton(this, numberGenerator.rowTable[i-1][j-1], j-1, i-1)
                 gameButtons.add(gameButton)
                 horizLay.addView(gameButton)
             }
             view.linearLayout.addView(horizLay)
         }
         for(i in 1..size){
-            val leftGameSum = GameSum(context, 10, i-1)
+            val leftGameSum = GameSum(context, numberGenerator.targetRowSum[i-1], i-1)
             leftGameSums.add(leftGameSum)
             view.leftSumLayout.addView(leftGameSum)
 
-            val topGameSum = GameSum(context, 10, i-1)
+            val topGameSum = GameSum(context, numberGenerator.targetColumnSum[i-1], i-1)
             topGameSums.add(topGameSum)
             view.topSumsLayout.addView(topGameSum)
         }
