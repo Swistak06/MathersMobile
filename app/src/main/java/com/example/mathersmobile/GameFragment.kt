@@ -1,5 +1,6 @@
 package com.example.mathersmobile
 
+import android.app.Activity
 import android.content.Context
 import android.content.res.Resources
 import android.os.Bundle
@@ -9,7 +10,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
+import android.widget.*
 import kotlinx.android.synthetic.main.fragment_game.*
 import kotlinx.android.synthetic.main.fragment_game.view.*
 
@@ -63,7 +64,6 @@ class GameFragment : Fragment() {
         updateLayoutSizes(view)
         updateFontSizes()
         generateButtons(view)
-        numberGenerator = NumberGenerator()
         view.backBtn.setOnClickListener {
             listener?.backFromGameOnClick()
             resetTimer()
@@ -154,12 +154,12 @@ class GameFragment : Fragment() {
             view.linearLayout.addView(horizLay)
         }
         for(i in 1..size){
-            val leftGameSum = GameSum(context, numberGenerator.targetRowSum[i-1], i-1)
+            val leftGameSum = GameSum(this, numberGenerator.targetRowSum[i-1], i-1)
             leftGameSum.setFontSize(sumFontSize.toFloat())
             leftGameSums.add(leftGameSum)
             view.leftSumLayout.addView(leftGameSum)
 
-            val topGameSum = GameSum(context, numberGenerator.targetColumnSum[i-1], i-1)
+            val topGameSum = GameSum(this, numberGenerator.targetColumnSum[i-1], i-1)
             topGameSum.setFontSize(sumFontSize.toFloat())
             topGameSums.add(topGameSum)
             view.topSumsLayout.addView(topGameSum)
@@ -178,6 +178,25 @@ class GameFragment : Fragment() {
         topSum?.changeValue(value)
     }
 
+    fun checkWinCondition(){
+        var sumInRows = 0
+        var sumInColumns = 0
+        leftGameSums.forEach {
+            if(it.completed)
+                sumInRows++
+        }
+        topGameSums.forEach {
+            if(it.completed)
+                sumInColumns++
+        }
+
+        if(sumInRows == size && sumInColumns == size){
+            stopTimer()
+            //show ne fragment :)
+            Toast.makeText(context,"alfa",Toast.LENGTH_LONG).show()
+        }
+
+    }
 
     /********************Timer methods********************/
     val runningStopWatch = object: Runnable {
