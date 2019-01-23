@@ -29,6 +29,9 @@ class MainMenuFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_main_menu, container, false)
+        min = 2
+        max = 4
+        size = 4
         view.startButton.setOnClickListener {
             listener?.startButtonOnClick(min, max, size)
         }
