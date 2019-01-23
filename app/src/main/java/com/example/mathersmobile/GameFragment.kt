@@ -70,7 +70,7 @@ class GameFragment : Fragment() {
         updateLayoutSizes(view)
         updateFontSizes()
         generateButtons(view)
-        numberGenerator.createBoard(size,min,max)
+        numberGenerator = NumberGenerator()
         view.backBtn.setOnClickListener {
             //resetGameArea()
             listener?.backToMenuListener()
