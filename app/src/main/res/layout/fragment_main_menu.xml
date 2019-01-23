@@ -19,6 +19,17 @@
             app:layout_constraintVertical_bias="0.94"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1" android:textColor="#FF231C1E"
             android:background="#e9721d"/>
+    <Button
+            android:text="INFO"
+            android:layout_width="147dp"
+            android:layout_height="61dp" android:id="@+id/infoButton"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1" android:textColor="#FF231C1E"
+            android:background="#e9721d"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.07" app:layout_constraintVertical_bias="0.94"/>
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
