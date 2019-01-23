@@ -192,8 +192,7 @@ class GameFragment : Fragment() {
 
         if(sumInRows == size && sumInColumns == size){
             stopTimer()
-            //show ne fragment :)
-            Toast.makeText(context,"alfa",Toast.LENGTH_LONG).show()
+            listener?.winConditionAction()
         }
 
     }
@@ -275,6 +274,7 @@ class GameFragment : Fragment() {
     }
     interface GameFragmentListener {
         fun backFromGameOnClick()
+        fun winConditionAction()
     }
 
     fun Int.toDp(): Int = (this/ Resources.getSystem().displayMetrics.density).toInt()

@@ -5,6 +5,13 @@ import android.os.Bundle
 import android.support.v4.app.FragmentManager
 
 class MainActivity : AppCompatActivity(), MainMenuFragment.MainMenuListener, GameFragment.GameFragmentListener, InfoFragment.InfoFragmentListener {
+    override fun winConditionAction() {
+        val transaction = manager.beginTransaction()
+        transaction.replace(R.id.main_frame,endGameFragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+
     override fun infoButtonOnClick() {
         val transaction = manager.beginTransaction()
         transaction.replace(R.id.main_frame, infoFragment)
@@ -22,6 +29,7 @@ class MainActivity : AppCompatActivity(), MainMenuFragment.MainMenuListener, Gam
     private val mainMenuFragment = MainMenuFragment()
     private val gameFragment = GameFragment()
     private val infoFragment = InfoFragment()
+    private val endGameFragment = EndGameFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
