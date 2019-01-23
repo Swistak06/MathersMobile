@@ -202,8 +202,12 @@ class GameFragment : Fragment() {
                 sumInColumns++
         }
 
-        if(sumInRows == size && sumInColumns == size)
+        if(sumInRows == size && sumInColumns == size){
+            stopTimer()
+            //show ne fragment :)
             Toast.makeText(context,"alfa",Toast.LENGTH_LONG).show()
+        }
+
     }
 
     /********************Timer methods********************/
