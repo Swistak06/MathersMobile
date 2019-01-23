@@ -46,5 +46,7 @@ class GameButton(game: GameFragment?, val value: Int, val column: Int, val row: 
 
         }
     }
-
+    fun setFontSize(size:Float){
+        textView?.textSize = size
+    }
 }
