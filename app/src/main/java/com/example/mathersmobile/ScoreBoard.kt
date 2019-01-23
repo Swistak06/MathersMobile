@@ -1,20 +1,19 @@
 package com.example.mathersmobile
 
 import android.app.Activity
-import android.content.Context
 import android.os.Environment
 import org.json.JSONObject
 import java.io.*
 import java.nio.channels.FileChannel
 import java.nio.charset.Charset
 
-class ScoreBoard(var context : Activity) {
+class ScoreBoard() {
 
     val sizeFour : IntArray = intArrayOf(0,0,0,0)
     val sizeFive : IntArray = intArrayOf(0,0,0,0)
     val sizeSix :  IntArray = intArrayOf(0,0,0,0)
     val sizeSeven : IntArray = intArrayOf(0,0,0,0)
-
+    var activity1 : Activity? = null
 
 
 
@@ -86,7 +85,7 @@ class ScoreBoard(var context : Activity) {
         output.close()
     }
     private fun createFile() : File {
-        var storageDir = context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)
+        var storageDir = activity1!!.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)
         if(!storageDir!!.exists())
             storageDir!!.mkdir()
 
@@ -118,9 +117,11 @@ class ScoreBoard(var context : Activity) {
          sizeSeven[3] = jsonObject.getJSONObject("7x7").getInt("9-22")
     }
     private fun readFile() : String{
-        val file = context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)
+        val file = activity1!!.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)
             .absolutePath + "/scoresMathers.json"
-
+        var file1 = File(file)
+        if(!file1.exists())
+            saveScoreBoard()
         val stream = FileInputStream(file)
 
 
@@ -133,6 +134,10 @@ class ScoreBoard(var context : Activity) {
         }
         stream.channel.close()
         return jsonString
+    }
+
+    fun setScoreActivity(activity: Activity){
+        this.activity1 = activity
     }
 
 }

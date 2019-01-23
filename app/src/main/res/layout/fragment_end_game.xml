@@ -43,21 +43,22 @@
                         android:text="@string/sizeFour"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:id="@+id/textView4"
-                        android:textColor="@android:color/background_dark" android:textSize="18sp"/>
+                        android:textColor="@android:color/background_dark" android:textSize="18sp"
+                        android:textStyle="bold"/>
                 <TextView
-                        android:text="@string/zero"
+                        android:text="@string/range0"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:id="@+id/r40textView" android:textSize="18sp"/>
                 <TextView
-                        android:text="@string/zero"
+                        android:text="@string/range1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:id="@+id/r41textView" android:textSize="18sp"/>
                 <TextView
-                        android:text="@string/zero"
+                        android:text="@string/range2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:id="@+id/r42textView" android:textSize="18sp"/>
                 <TextView
-                        android:text="@string/zero"
+                        android:text="@string/range3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:id="@+id/r43textView" android:textSize="18sp"/>
             </LinearLayout>
@@ -69,21 +70,22 @@
                         android:text="@string/sizeFive"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:id="@+id/textView14"
-                        android:textColor="@android:color/background_dark" android:textSize="18sp"/>
+                        android:textColor="@android:color/background_dark" android:textSize="18sp"
+                        android:textStyle="bold"/>
                 <TextView
-                        android:text="@string/zero"
+                        android:text="@string/range0"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:id="@+id/r50textView" android:textSize="18sp"/>
                 <TextView
-                        android:text="@string/zero"
+                        android:text="@string/range1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:id="@+id/r51textView" android:textSize="18sp"/>
                 <TextView
-                        android:text="@string/zero"
+                        android:text="@string/range2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:id="@+id/r52textView" android:textSize="18sp"/>
                 <TextView
-                        android:text="@string/zero"
+                        android:text="@string/range3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:id="@+id/r53textView" android:textSize="18sp"/>
             </LinearLayout>
@@ -100,21 +102,22 @@
                         android:text="@string/sizeSix"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:id="@+id/textView19"
-                        android:textColor="@android:color/background_dark" android:textSize="18sp"/>
+                        android:textColor="@android:color/background_dark" android:textSize="18sp"
+                        android:textStyle="bold"/>
                 <TextView
-                        android:text="@string/zero"
+                        android:text="@string/range0"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:id="@+id/r60textView" android:textSize="18sp"/>
                 <TextView
-                        android:text="@string/zero"
+                        android:text="@string/range1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:id="@+id/r61textView" android:textSize="18sp"/>
                 <TextView
-                        android:text="@string/zero"
+                        android:text="@string/range2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:id="@+id/r62textView" android:textSize="18sp"/>
                 <TextView
-                        android:text="@string/zero"
+                        android:text="@string/range3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:id="@+id/r63textView" android:textSize="18sp"/>
             </LinearLayout>
@@ -126,21 +129,22 @@
                         android:text="@string/sizeSeven"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:id="@+id/textView24"
-                        android:textColor="@android:color/background_dark" android:textSize="18sp"/>
+                        android:textColor="@android:color/background_dark" android:textSize="18sp"
+                        android:textStyle="bold"/>
                 <TextView
-                        android:text="@string/zero"
+                        android:text="@string/range0"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:id="@+id/r70textView" android:textSize="18sp"/>
                 <TextView
-                        android:text="@string/zero"
+                        android:text="@string/range1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:id="@+id/r71textView" android:textSize="18sp"/>
                 <TextView
-                        android:text="@string/zero"
+                        android:text="@string/range2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:id="@+id/r72textView" android:textSize="18sp"/>
                 <TextView
-                        android:text="@string/zero"
+                        android:text="@string/range3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:id="@+id/r73textView" android:textSize="18sp"/>
             </LinearLayout>
@@ -148,6 +152,6 @@
         <Button
                 android:text="@string/menu"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/button2" android:textSize="24sp"/>
+                android:layout_height="wrap_content" android:id="@+id/backToMenuButton" android:textSize="24sp"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

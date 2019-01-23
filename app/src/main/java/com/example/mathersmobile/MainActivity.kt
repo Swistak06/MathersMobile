@@ -4,11 +4,20 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.FragmentManager
 
-class MainActivity : AppCompatActivity(), MainMenuFragment.MainMenuListener, GameFragment.GameFragmentListener, InfoFragment.InfoFragmentListener {
-    override fun winConditionAction() {
+class MainActivity : AppCompatActivity(), MainMenuFragment.MainMenuListener, GameFragment.GameFragmentListener, InfoFragment.InfoFragmentListener, EndGameFragment.EndGameFragmentListener {
+
+    override fun backToMainMenu() {
+        val transaction = manager.beginTransaction()
+        transaction.replace(R.id.main_frame, mainMenuFragment)
+        transaction.commit()
+    }
+
+    override fun winConditionAction(minutes : Int, seconds : Int, size : Int, max : Int) {
+        endGameFragment.setFragmentActivity(this)
+        endGameFragment.setTimeOfGame(minutes, seconds)
+        endGameFragment.setGameMode(size, max)
         val transaction = manager.beginTransaction()
         transaction.replace(R.id.main_frame,endGameFragment)
-        transaction.addToBackStack(null)
         transaction.commit()
     }
 
