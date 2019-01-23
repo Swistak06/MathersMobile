@@ -56,6 +56,7 @@ class GameSum(ctx: Context?, goal: Int, val index: Int) : RelativeLayout(ctx) {
 
         checkCompleted()
     }
-
-
+    fun setFontSize(size:Float){
+        textView?.textSize = size
+    }
 }

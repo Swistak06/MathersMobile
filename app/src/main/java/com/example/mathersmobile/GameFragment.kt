@@ -1,10 +1,13 @@
 package com.example.mathersmobile
 
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
+import android.support.constraint.ConstraintLayout
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +24,27 @@ class GameFragment : Fragment() {
     private var min = 2
     private var max = 4
     private var size = 4
+
+    private val ELEMENT_SIZE_4 = 130
+    private val BUTTON_FONT_SIZE_4 = 30
+    private val SUM_FONT_SIZE_4 = 15
+
+    private val ELEMENT_SIZE_5 = 104
+    private val BUTTON_FONT_SIZE_5 = 26
+    private val SUM_FONT_SIZE_5 = 13
+
+    private val ELEMENT_SIZE_6 = 88
+    private val BUTTON_FONT_SIZE_6 = 22
+    private val SUM_FONT_SIZE_6 = 10
+
+    private val ELEMENT_SIZE_7 = 76
+    private val BUTTON_FONT_SIZE_7 = 17
+    private val SUM_FONT_SIZE_7 = 8
+
+    private var elementsSize = ELEMENT_SIZE_4
+    private var buttonFontSize = BUTTON_FONT_SIZE_4
+    private var sumFontSize = SUM_FONT_SIZE_4
+
     val handler = Handler()
     var stopwatch = StopWatch(0,0,0,0)
     var numberGenerator = NumberGenerator()
@@ -41,19 +65,16 @@ class GameFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_game, container, false)
+        clearLayouts(view)
+        updateLayoutSizes(view)
+        updateFontSizes()
         generateButtons(view)
         view.backBtn.setOnClickListener {
-            //resetGameArea()
-            numberGenerator.createBoard(5,2,4)
             listener?.backToMenuListener()
             resetTimer()
 
         }
         return view
-    }
-
-    private fun resetGameArea() {
-        //TODO: not implemented
     }
 
     override fun onAttach(context: Context) {
@@ -88,8 +109,44 @@ class GameFragment : Fragment() {
     fun setSize(size:Int){
         this.size = size
     }
+
+    private fun updateLayoutSizes(view: View) {
+        elementsSize = when (size) {
+            5 -> ELEMENT_SIZE_5
+            6 -> ELEMENT_SIZE_6
+            7 -> ELEMENT_SIZE_7
+            else -> ELEMENT_SIZE_4
+        }
+
+        var params = view.leftSumLayout.layoutParams as ConstraintLayout.LayoutParams
+        Log.d("width", params.width.toString())
+        params.width = elementsSize
+        params.leftMargin = 160 - elementsSize
+//        params.marginStart = 80 - elementsSize
+        view.leftSumLayout.layoutParams = params
+
+        params = view.topSumsLayout.layoutParams as ConstraintLayout.LayoutParams
+        params.height = elementsSize
+        params.topMargin = 312 - elementsSize
+        view.topSumsLayout.layoutParams = params
+    }
+
+    private fun updateFontSizes() {
+        buttonFontSize = when(size){
+            5 -> BUTTON_FONT_SIZE_5
+            6 -> BUTTON_FONT_SIZE_6
+            7 -> BUTTON_FONT_SIZE_7
+            else -> BUTTON_FONT_SIZE_4
+        }
+        sumFontSize = when(size){
+            5 -> SUM_FONT_SIZE_5
+            6 -> SUM_FONT_SIZE_6
+            7 -> SUM_FONT_SIZE_7
+            else -> SUM_FONT_SIZE_4
+        }
+    }
+
     fun generateButtons(view: View){
-        clearLayouts()
         numberGenerator.createBoard(size,min,max)
         val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 1.0f)
         for(i in 1..size){
@@ -98,6 +155,7 @@ class GameFragment : Fragment() {
             horizLay.layoutParams = params
             for(j in 1..size){
                 val gameButton = GameButton(this, numberGenerator.rowTable[i-1][j-1], j-1, i-1)
+                gameButton.setFontSize(buttonFontSize.toFloat())
                 gameButtons.add(gameButton)
                 horizLay.addView(gameButton)
             }
@@ -105,18 +163,26 @@ class GameFragment : Fragment() {
         }
         for(i in 1..size){
             val leftGameSum = GameSum(context, numberGenerator.targetRowSum[i-1], i-1)
+            leftGameSum.setFontSize(sumFontSize.toFloat())
             leftGameSums.add(leftGameSum)
             view.leftSumLayout.addView(leftGameSum)
 
             val topGameSum = GameSum(context, numberGenerator.targetColumnSum[i-1], i-1)
+            topGameSum.setFontSize(sumFontSize.toFloat())
             topGameSums.add(topGameSum)
             view.topSumsLayout.addView(topGameSum)
         }
     }
-    fun clearLayouts(){
+    fun clearLayouts(view: View?){
         leftGameSums.clear()
         topGameSums.clear()
         gameButtons.clear()
+
+        view?.linearLayout?.removeAllViews()
+        view?.topSumsLayout?.removeAllViews()
+        view?.leftSumLayout?.removeAllViews()
+
+
     }
     fun changeGameSum(column:Int, row:Int, value:Int) {
         val leftSum = findLeftSum(row)
@@ -198,4 +264,7 @@ class GameFragment : Fragment() {
     interface GameFragmentListener {
         fun backToMenuListener()
     }
+
+    fun Int.toDp(): Int = (this/ Resources.getSystem().displayMetrics.density).toInt()
 }
+
