@@ -8,27 +8,26 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 
-class GameButton: RelativeLayout {
+class GameButton(game: GameFragment?, val value: Int, val column: Int, val row: Int) : RelativeLayout(game?.context) {
     private var textView: TextView? = null
     private var imageView: ImageView? = null
     private var slected = false
 
-    private constructor(ctx: Context?) : super(ctx)
-    constructor(ctx:Context?, text:String) : this(ctx) {
-        textView = TextView(ctx)
-        imageView = ImageView(ctx)
+    init {
+        textView = TextView(game?.context)
+        imageView = ImageView(game?.context)
 
         val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 1.0f)
         layoutParams = params
 
-        textView?.text = text
+        textView?.text = value.toString()
         textView?.layoutParams = params
         textView?.gravity = Gravity.CENTER
         textView?.textSize = 30f
         textView?.setTextColor(Color.parseColor("#ffffff"))
 
         imageView?.layoutParams = params
-        imageView?.setImageResource(R.drawable.unselected70)
+        imageView?.setImageResource(R.drawable.unselected)
 
         addView(imageView)
         addView(textView)
@@ -36,11 +35,13 @@ class GameButton: RelativeLayout {
         setOnClickListener {
             if (slected){
                 slected = false
-                imageView?.setImageResource(R.drawable.unselected70)
+                imageView?.setImageResource(R.drawable.unselected)
+                game?.changeGameSum(column, row, -value)
             }
             else{
                 slected = true
-                imageView?.setImageResource(R.drawable.selected70)
+                imageView?.setImageResource(R.drawable.selected)
+                game?.changeGameSum(column, row, value)
             }
 
         }
