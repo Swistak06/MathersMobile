@@ -4,11 +4,24 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.FragmentManager
 
-class MainActivity : AppCompatActivity(), MainMenuFragment.MainMenuListener, GameFragment.GameFragmentListener {
+class MainActivity : AppCompatActivity(), MainMenuFragment.MainMenuListener, GameFragment.GameFragmentListener, InfoFragment.InfoFragmentListener {
+    override fun infoButtonOnClick() {
+        val transaction = manager.beginTransaction()
+        transaction.replace(R.id.main_frame, infoFragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+
+    override fun backFromInfoOnClick() {
+        val transaction = manager.beginTransaction()
+        transaction.replace(R.id.main_frame, mainMenuFragment)
+        transaction.commit()
+    }
 
     private val manager: FragmentManager = supportFragmentManager
     private val mainMenuFragment = MainMenuFragment()
     private val gameFragment = GameFragment()
+    private val infoFragment = InfoFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +35,7 @@ class MainActivity : AppCompatActivity(), MainMenuFragment.MainMenuListener, Gam
         transaction.commit()
     }
 
-    override fun backToMenuListener() {
+    override fun backFromGameOnClick() {
         val transaction = manager.beginTransaction()
         transaction.replace(R.id.main_frame, mainMenuFragment)
         transaction.commit()

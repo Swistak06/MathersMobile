@@ -35,6 +35,9 @@ class MainMenuFragment : Fragment() {
         view.startButton.setOnClickListener {
             listener?.startButtonOnClick(min, max, size)
         }
+        view.infoButton.setOnClickListener {
+            listener?.infoButtonOnClick()
+        }
         setRangeListeners(view)
         setSizeListeners(view)
         return view
@@ -149,6 +152,7 @@ class MainMenuFragment : Fragment() {
 
     interface MainMenuListener {
         fun startButtonOnClick(min:Int, max:Int, size:Int)
+        fun infoButtonOnClick()
     }
 
 }

@@ -2,20 +2,14 @@ package com.example.mathersmobile
 
 import android.content.Context
 import android.content.res.Resources
-import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.support.constraint.ConstraintLayout
 import android.support.v4.app.Fragment
-import android.util.Log
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.RelativeLayout
-import android.widget.TextView
 import kotlinx.android.synthetic.main.fragment_game.*
 import kotlinx.android.synthetic.main.fragment_game.view.*
 
@@ -50,7 +44,6 @@ class GameFragment : Fragment() {
     var stopwatch = StopWatch(0,0,0,0)
     var numberGenerator = NumberGenerator()
 
-
     private val leftGameSums : MutableList<GameSum> = mutableListOf()
     private val topGameSums : MutableList<GameSum> = mutableListOf()
     private val gameButtons : MutableList<GameButton> = mutableListOf()
@@ -66,14 +59,13 @@ class GameFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_game, container, false)
-        clearLayouts(view)
+        clearLayouts()
         updateLayoutSizes(view)
         updateFontSizes()
         generateButtons(view)
         numberGenerator = NumberGenerator()
         view.backBtn.setOnClickListener {
-            //resetGameArea()
-            listener?.backToMenuListener()
+            listener?.backFromGameOnClick()
             resetTimer()
         }
         return view
@@ -121,10 +113,8 @@ class GameFragment : Fragment() {
         }
 
         var params = view.leftSumLayout.layoutParams as ConstraintLayout.LayoutParams
-        Log.d("width", params.width.toString())
         params.width = elementsSize
         params.leftMargin = 160 - elementsSize
-//        params.marginStart = 80 - elementsSize
         view.leftSumLayout.layoutParams = params
 
         params = view.topSumsLayout.layoutParams as ConstraintLayout.LayoutParams
@@ -175,15 +165,10 @@ class GameFragment : Fragment() {
             view.topSumsLayout.addView(topGameSum)
         }
     }
-    fun clearLayouts(view: View?){
+    fun clearLayouts(){
         leftGameSums.clear()
         topGameSums.clear()
         gameButtons.clear()
-
-        view?.linearLayout?.removeAllViews()
-        view?.topSumsLayout?.removeAllViews()
-        view?.leftSumLayout?.removeAllViews()
-
 
     }
     fun changeGameSum(column:Int, row:Int, value:Int) {
@@ -270,7 +255,7 @@ class GameFragment : Fragment() {
         return null
     }
     interface GameFragmentListener {
-        fun backToMenuListener()
+        fun backFromGameOnClick()
     }
 
     fun Int.toDp(): Int = (this/ Resources.getSystem().displayMetrics.density).toInt()
