@@ -26,6 +26,10 @@ class GameFragment : Fragment() {
     var numberGenerator = NumberGenerator()
 
 
+    private val leftGameSums : MutableList<GameSum> = mutableListOf()
+    private val topGameSums : MutableList<GameSum> = mutableListOf()
+    private val gameButtons : MutableList<GameButton> = mutableListOf()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -85,72 +89,37 @@ class GameFragment : Fragment() {
         this.size = size
     }
     fun generateButtons(view: View){
-        var ids = 100
+        clearLayouts()
         val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 1.0f)
         for(i in 1..size){
             val horizLay = LinearLayout(context)
             horizLay.orientation = LinearLayout.HORIZONTAL
             horizLay.layoutParams = params
-            horizLay.id = ids + i*10
             for(j in 1..size){
-//
-//                val button = RelativeLayout(context)
-//                button.layoutParams = params
-//
-//                val img = ImageView(context)
-//                img.layoutParams = params
-//                img.setImageResource(R.drawable.selected70)
-//
-//                val textV = TextView(context)
-//                textV.layoutParams = params
-//                textV.gravity = Gravity.CENTER
-//                textV.text = "99"
-//                textV.textSize = 30f
-//                textV.setTextColor(Color.parseColor("#ffffff"))
-//
-//                button.addView(img)
-//                button.addView(textV)
-                val gameButton = GameButton(context, "99")
+                val gameButton = GameButton(this, 10, j-1, i-1)
+                gameButtons.add(gameButton)
                 horizLay.addView(gameButton)
             }
             view.linearLayout.addView(horizLay)
         }
         for(i in 1..size){
-            val leftB = RelativeLayout(context)
-            leftB.layoutParams = params
+            val leftGameSum = GameSum(context, 10, i-1)
+            leftGameSums.add(leftGameSum)
+            view.leftSumLayout.addView(leftGameSum)
 
-            var img = ImageView(context)
-            img.layoutParams = params
-            img.setImageResource(R.drawable.selected70)
-
-            var textV = TextView(context)
-            textV.layoutParams = params
-            textV.gravity = Gravity.CENTER
-            textV.text = "99"
-            textV.textSize = 30f
-            textV.setTextColor(Color.parseColor("#ffffff"))
-            leftB.addView(img)
-            leftB.addView(textV)
-            view.leftSumLayout.addView(leftB)
-
-            val topB = RelativeLayout(context)
-            topB.layoutParams = params
-
-            img = ImageView(context)
-            img.layoutParams = params
-            img.setImageResource(R.drawable.selected70)
-
-            textV = TextView(context)
-            textV.layoutParams = params
-            textV.gravity = Gravity.CENTER
-            textV.text = "99"
-            textV.textSize = 30f
-            textV.setTextColor(Color.parseColor("#ffffff"))
-            topB.addView(img)
-            topB.addView(textV)
-            view.topSumsLayout.addView(topB)
+            val topGameSum = GameSum(context, 10, i-1)
+            topGameSums.add(topGameSum)
+            view.topSumsLayout.addView(topGameSum)
         }
     }
+    fun clearLayouts(){
+        leftGameSums.clear()
+        topGameSums.clear()
+        gameButtons.clear()
+    }
+    fun changeGameSum(column:Int, row:Int, value:Int){
+        val leftSum = findLeftSum(row)
+        val topSum = findTopSum(column)
 
     val runningStopWatch = object: Runnable {
         override fun run() {
@@ -208,6 +177,23 @@ class GameFragment : Fragment() {
             stopwatch.tenMinutes++
             tenMinutesView.text = stopwatch.tenMinutes.toString()
         }
+        leftSum?.changeValue(value)
+        topSum?.changeValue(value)
+
+    }
+    private fun findLeftSum(row:Int) : GameSum?{
+        leftGameSums.forEach {
+            if(it.index == row)
+                return it
+        }
+        return null
+    }
+    private fun findTopSum(column:Int) : GameSum?{
+        topGameSums.forEach {
+            if(it.index == column)
+                return it
+        }
+        return null
     }
     interface GameFragmentListener {
         fun backToMenuListener()
