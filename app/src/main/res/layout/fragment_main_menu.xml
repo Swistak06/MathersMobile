@@ -8,6 +8,20 @@
                                              tools:context=".MainMenuFragment" android:baselineAligned="false"
                                              android:background="#50636363">
 
+    <RelativeLayout
+            android:layout_width="70dp"
+            android:layout_height="70dp" tools:layout_editor_absoluteY="411dp" tools:layout_editor_absoluteX="57dp">
+
+        <ImageView
+                android:src="@drawable/unselected70"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/imageView3"/>
+        <TextView
+                android:text="99"
+                android:layout_height="match_parent" android:id="@+id/textView3"
+                android:layout_width="match_parent" android:gravity="center" android:textSize="30sp"
+                android:textColor="#ffffff"/>
+    </RelativeLayout>
     <Button
             android:text="START"
             android:layout_width="147dp"

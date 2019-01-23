@@ -5,14 +5,6 @@ import android.os.Bundle
 import android.support.v4.app.FragmentManager
 
 class MainActivity : AppCompatActivity(), MainMenuFragment.MainMenuListener, GameFragment.GameFragmentListener {
-    override fun startButtonOnClick(min:Int, max:Int, size:Int) {
-        gameFragment.setMinMax(min, max)
-        gameFragment.setSize(size)
-        val transaction = manager.beginTransaction()
-        transaction.replace(R.id.main_frame, gameFragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
-    }
 
     private val manager: FragmentManager = supportFragmentManager
     private val mainMenuFragment = MainMenuFragment()
@@ -29,4 +21,22 @@ class MainActivity : AppCompatActivity(), MainMenuFragment.MainMenuListener, Gam
         transaction.addToBackStack(null)
         transaction.commit()
     }
+
+    override fun backToMenuListener() {
+        val transaction = manager.beginTransaction()
+        transaction.replace(R.id.main_frame, mainMenuFragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+
+    override fun startButtonOnClick(min:Int, max:Int, size:Int) {
+        gameFragment.setMinMax(min, max)
+        gameFragment.setSize(size)
+        val transaction = manager.beginTransaction()
+        transaction.replace(R.id.main_frame, gameFragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+
+
 }
