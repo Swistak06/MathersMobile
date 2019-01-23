@@ -28,7 +28,7 @@ class NumberGenerator {
 
         for(i : Int in 0..(size-1)){
 
-            val numbersToDisable = rand.nextInt(maxNumberOfDisabledButtonsInRow)
+            val numbersToDisable = rand.nextInt(((maxNumberOfDisabledButtonsInRow) - 1) + 1) +1
             val indexesToBeDisabled = ArrayList<Int>()
 
 
