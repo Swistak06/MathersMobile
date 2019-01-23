@@ -1,8 +1,11 @@
 package com.example.mathersmobile
 
+import android.Manifest
 import android.app.Activity
 import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +22,7 @@ class EndGameFragment : Fragment() {
     var timeSeconds = 0
     var size = 0
     var max = 0
+    val REQUEST_READ_EXTERNAL = 1
 
 
     private var listener: EndGameFragmentListener? = null
@@ -34,7 +38,15 @@ class EndGameFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_end_game, container, false)
         score.setScoreActivity(activity!!)
-        score.updateScoreBoard(size ,max)
+        if(ActivityCompat.checkSelfPermission(context!!, Manifest.permission.READ_EXTERNAL_STORAGE)
+            != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(activity!!, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                REQUEST_READ_EXTERNAL)
+        }
+        else{
+            score.updateScoreBoard(size ,max)
+        }
+
         view.timeTextView.text = timeMinutes.toString() + ":" + timeSeconds.toString()
         updateScoreBoard(view)
         view.backToMenuButton.setOnClickListener {
@@ -96,6 +108,11 @@ class EndGameFragment : Fragment() {
         view.r71textView.text =view.r71textView.text.toString() + " " + score.sizeSeven[1].toString()
         view.r72textView.text =view.r72textView.text.toString() + " " + score.sizeSeven[2].toString()
         view.r73textView.text =view.r73textView.text.toString() + " " + score.sizeSeven[3].toString()
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        if(requestCode == REQUEST_READ_EXTERNAL)
+            score.updateScoreBoard(size,max)
     }
 
 }
