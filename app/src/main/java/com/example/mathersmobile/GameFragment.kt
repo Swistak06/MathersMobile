@@ -192,8 +192,8 @@ class GameFragment : Fragment() {
 
         if(sumInRows == size && sumInColumns == size){
             stopTimer()
-            //show ne fragment :)
-            Toast.makeText(context,"alfa",Toast.LENGTH_LONG).show()
+            listener?.winConditionAction(stopwatch.tenMinutes * 10 + stopwatch.minutes, stopwatch.tenSeconds * 10 + stopwatch.seconds,
+                size, max)
         }
 
     }
@@ -275,6 +275,7 @@ class GameFragment : Fragment() {
     }
     interface GameFragmentListener {
         fun backFromGameOnClick()
+        fun winConditionAction(minutes : Int, seconds : Int, size : Int, max : Int)
     }
 
     fun Int.toDp(): Int = (this/ Resources.getSystem().displayMetrics.density).toInt()

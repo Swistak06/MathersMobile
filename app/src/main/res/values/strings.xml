@@ -6,4 +6,16 @@
     <string name="backBtn">Back</string>
     <string name="zero">0</string>
     <string name="colon">:</string>
+    <string name="grats">Congratulations!</string>
+    <string name="ytime">Your time:</string>
+    <string name="timeZero">00:00</string>
+    <string name="sizeFour">4x4</string>
+    <string name="sizeFive">5x5</string>
+    <string name="sizeSix">6x6</string>
+    <string name="sizeSeven">7x7</string>
+    <string name="range0">2–4: </string>
+    <string name="range1">2–9: </string>
+    <string name="range2">5–14: </string>
+    <string name="range3">9–22: </string>
+    <string name="menu">Menu</string>
 </resources>
