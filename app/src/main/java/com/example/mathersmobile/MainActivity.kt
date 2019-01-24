@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity(), MainMenuFragment.MainMenuListener, Gam
         transaction.add(R.id.main_frame, mainMenuFragment)
         transaction.add(R.id.main_frame, gameFragment)
         transaction.replace(R.id.main_frame, mainMenuFragment)
-        transaction.addToBackStack(null)
+        //transaction.addToBackStack(null)
         transaction.commit()
     }
 
@@ -67,5 +67,15 @@ class MainActivity : AppCompatActivity(), MainMenuFragment.MainMenuListener, Gam
         transaction.commit()
     }
 
+    override fun onBackPressed() {
+        if(endGameFragment.isVisible)
+        {
+            val transaction = manager.beginTransaction()
+            transaction.replace(R.id.main_frame, mainMenuFragment)
+            transaction.commit()
+        }
+        else
+            super.onBackPressed()
 
+    }
 }
