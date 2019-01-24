@@ -35,15 +35,7 @@ class EndGameFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_end_game, container, false)
 
         score.setScoreActivity(activity!!)
-        if(ActivityCompat.checkSelfPermission(context!!, Manifest.permission.READ_EXTERNAL_STORAGE)
-            != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(activity!!, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                REQUEST_READ_EXTERNAL)
-        }
-        else{
-            score.updateScoreBoard(size ,max)
-        }
-
+        score.updateScoreBoard(size ,max)
         view.timeTextView.text = timeMinutes.toString() + ":" + timeSeconds.toString()
         updateScoreBoard(view)
         view.backToMenuButton.setOnClickListener {
@@ -108,8 +100,5 @@ class EndGameFragment : Fragment() {
     }
 
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        if(requestCode == REQUEST_READ_EXTERNAL)
-            score.updateScoreBoard(size,max)
-    }
+
 }
