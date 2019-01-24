@@ -18,4 +18,15 @@
     <string name="range2">5–14: </string>
     <string name="range3">9–22: </string>
     <string name="menu">Menu</string>
+    <string name="player_is_selecting_numbers_by_clicking_on_them_when_the_number_is_selected_the_sum_in_proper_column_and_row_is_changed_if_the_sum_is_correct_it_will_change_the_color_to_orange_if_all_sums_are_corectly_reached_player_wins_after_winning_there_are_displayed_information_about_times_player_reached_with_each_size_of_the_board_and_with_each_range_of_numbers">
+        Player is selecting numbers by clicking on them. When the number is selected the sum in proper column and row is
+        changed. If the sum is correct it will change the color to orange. If all sums are correctly reached player wins.
+        After winning there are displayed information about times player reached with each size of the board and with
+        each range of numbers.
+    </string>
+    <string name="how_to_play">How to play</string>
+    <string name="mathersmobile_is_a_mathematic_game_with_a_goal_to_get_proper_numbers_sums_in_each_row_and_column">
+        MathersMobile is a mathematic game with a goal to get proper numbers sums in each row and column.
+    </string>
+    <string name="back_to_menu">Back to Menu</string>
 </resources>
